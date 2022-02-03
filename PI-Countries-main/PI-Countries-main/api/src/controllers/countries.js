@@ -6,11 +6,11 @@ const { Op } = require('sequelize');
 const getApiInfo = async () => {
     try {
         let apiInfo = (await axios.get('https://restcountries.com/v3/all')).data;
-            apiInfo = await Promise.all(
-                apiInfo.map(element => {
+            apiInfo = await 
+                apiInfo?.map(element => {
                     Countries.findOrCreate({
                         where: {
-                            id: element.cca3,
+                            idL: element.cca3,
                             name: element.name.common,
                             flag: element.flags[1],                    
                             continent: element.continents[0],
@@ -21,7 +21,7 @@ const getApiInfo = async () => {
                         },
                     });       
                 })   
-            ); 
+             
             return 'Countries successfully added in database...';
     } catch (error) {
         return(error)
@@ -33,7 +33,7 @@ const getApiInfo = async () => {
 const getIdCountry = async (req, res) => {
     try {
         const { id } = req.params;
-        let countryId = await Country.findByPk(id.toUpperCase(),{            
+        let countryId = await Countries.findByPk(id.toUpperCase(),{            
             attributes: ['flag', 'name', 'continent', 'id', 'capital', 'subregion', 'area', 'population'],
             include: TouristActs
         })
@@ -47,7 +47,8 @@ const getIdCountry = async (req, res) => {
 const getAllNameCountries = async (req, res) => {
     try {
         const { name } = req.query;
-        let countryName = await Country.findAll({
+        
+        let countryName = await Countries.findAll({
             where: {
                 name: {
                   [Op.iLike]: `%${name}%`,
@@ -55,10 +56,13 @@ const getAllNameCountries = async (req, res) => {
             },   
             attributes: ['flag', 'name', 'id', 'continent', 'population', 'area', 'capital'],
         })
+        console.log('asdasd',countryName)
         if(name){
-            countryName.length > 0 ? res.send(countryName): res.status(404).send('The entered country does not exist.');
+            countryName.length > 0 ? res.send(countryName): 
+            res.status(404).send('The entered country does not exist.');
+            
         }else{
-            const dbInfo = await Country.findAll({
+            const dbInfo = await Countries.findAll({
                 attributes: ['flag', 'name', 'id', 'continent', 'population', 'capital', 'area'], 
                 include : TouristActs          
             })
@@ -67,6 +71,7 @@ const getAllNameCountries = async (req, res) => {
     } catch (error) {
         res.send(error);
     }
+    
 };
 
 

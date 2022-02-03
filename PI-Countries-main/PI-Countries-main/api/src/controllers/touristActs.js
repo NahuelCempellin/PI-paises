@@ -1,4 +1,4 @@
-const {Country,TouristActs}= require('../db');
+const {Countries,TouristActs}= require('../db');
 
 
 const postActivity= async(req,res)=>{
@@ -11,7 +11,7 @@ const postActivity= async(req,res)=>{
                 season
             });
             countries.forEach(async(e)=>{
-                let countryAct= await Country.findOne({
+                let countryAct= await Countries.findOne({
                     where:{
                         name: e
                     }
@@ -29,7 +29,7 @@ const getAllActivities= async(req,res)=>{
     try{
         const dbActInfo = await TouristActs.findAll({
             attributes: ['name'],
-            include: Country
+            include: Countries
         })
         res.send(dbActInfo);
     }catch(error){

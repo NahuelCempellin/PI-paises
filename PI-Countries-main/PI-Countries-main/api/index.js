@@ -23,10 +23,11 @@ const {getApiInfo}= require('./src/controllers/countries')
 
 // Syncing all the models at once.
 
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, async () => {
-    const loading = await getApiInfo();
+conn.sync({ force: true }).then(async () => {
+  const loading = await getApiInfo();
     console.log(loading);
+  server.listen(3001, () => {
+    
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });

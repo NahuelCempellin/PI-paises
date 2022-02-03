@@ -15,8 +15,8 @@ const touristActRoutes= require('./touristActs.js');
 const router = Router();
 
 
-router.use('/Countries', countryRoutes);
-router.use('/TouristActs', touristActRoutes);
+router.use('/countries', countryRoutes);
+router.use('/touristActs', touristActRoutes);
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
