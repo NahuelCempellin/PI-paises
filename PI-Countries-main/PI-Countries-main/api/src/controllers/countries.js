@@ -15,7 +15,7 @@ const getApiInfo = async () => {
                             flag: element.flags[1],                    
                             continent: element.continents[0],
                             capital: element.capital?element.capital[0]:'Capital not found',
-                            subregion: element.subregion?element.subregion:'Subregion not found',
+                            subregion: element.subregion,
                             area: element.area,
                             population: element.population
                         },
