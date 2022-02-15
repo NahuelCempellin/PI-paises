@@ -1,2 +1,12 @@
-export  const MAIN_URL= 'http://localhost:3001/Countries';
+export  const MAIN_URL= 'http://localhost:3001/countries';
+export const COUNTRY_URL= `http://localhost:3001/countries?name=`;
+export const TOURIST_URL=`http://localhost:3001/touristActs`;
+export const GET_ID= 'http://localhost:3001/countries/';
 export  const GET_COUNTRIES= 'GET_COUNTRIES';
+export const FILTER_BY_CONTINENT= 'FILTER_BY_CONTINENT';
+export const FILTER_BY_ALPH='FILTER_BY_ALPH';
+export const FILTER_BY_SEARCH= 'FILTER_BY_SEARCH';
+export const FILTER_BY_POPULATION= 'FILTER_BY_POPULATION';
+export const POST_ACTIVITY= 'POST_ACTIVITY';
+export const GET_ACTIVITY= 'GET_ACTIVITY';
+export const GET_DETAIL= 'GET_DETAIL';

@@ -15,7 +15,7 @@ const getApiInfo = async () => {
                             flag: element.flags[1],                    
                             continent: element.continents[0],
                             capital: element.capital?element.capital[0]:'Capital not found',
-                            subregion: element.subregion,
+                            subregion: element.subregion?element.subregion:'Subregion not found',
                             area: element.area,
                             population: element.population
                         },
@@ -32,10 +32,12 @@ const getApiInfo = async () => {
 
 const getIdCountry = async (req, res) => {
     try {
-        const { id } = req.params;
-        let countryId = await Countries.findByPk(id.toUpperCase(),{            
-            attributes: ['flag', 'name', 'continent', 'id', 'capital', 'subregion', 'area', 'population'],
-            include: TouristActs
+        const idL = req.params.idL.toUpperCase();
+        let countryId = await Countries.findOne( {
+            where:{
+                idL: idL
+            },
+             include: TouristActs
         })
         countryId ? res.send(countryId): res.send('The entered country does not exist.');
     } catch (error) {
@@ -54,16 +56,16 @@ const getAllNameCountries = async (req, res) => {
                   [Op.iLike]: `%${name}%`,
                 },
             },   
-            attributes: ['flag', 'name', 'id', 'continent', 'population', 'area', 'capital'],
+            attributes: ['flag', 'name', 'id','idL', 'continent', 'population', 'area', 'capital'],
         })
-        console.log('asdasd',countryName)
+        
         if(name){
             countryName.length > 0 ? res.send(countryName): 
             res.status(404).send('The entered country does not exist.');
             
         }else{
             const dbInfo = await Countries.findAll({
-                attributes: ['flag', 'name', 'id', 'continent', 'population', 'capital', 'area'], 
+                attributes: ['flag', 'name', 'id','idL', 'continent', 'population', 'capital', 'area'], 
                 include : TouristActs          
             })
             res.send(dbInfo); 

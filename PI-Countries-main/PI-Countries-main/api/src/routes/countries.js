@@ -5,7 +5,7 @@ const  {getIdCountry, getAllNameCountries}= require('../controllers/countries');
 const router= Router();
 
 router.get('/', getAllNameCountries);
-router.get('/:id',getIdCountry);
+router.get('/:idL',getIdCountry);
 
 
 module.exports= router;

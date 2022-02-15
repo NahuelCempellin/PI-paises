@@ -10,14 +10,14 @@ const postActivity= async(req,res)=>{
                 duration,
                 season
             });
-            countries.forEach(async(e)=>{
-                let countryAct= await Countries.findOne({
+            for(const i of countries){
+                const countryAct= await Countries.findOne({
                     where:{
-                        name: e
+                        name: i
                     }
                 })
-                await newActivity.addCountry(countryAct);
-            });
+                await newActivity.addCountries(countryAct);
+            };
             res.send('Activity created Successfully!');
         }catch(error){
             res.send(error);
