@@ -1,7 +1,7 @@
 import { React,useEffect, useState} from "react";
 import { useDispatch, useSelector  } from "react-redux";
 import {connect} from 'react-redux'
-import {getAllCountries} from "../../store/Actions/CountryActions";
+import {getActs, getAllCountries} from "../../store/Actions/CountryActions";
 import Paginate from "../Paginacion/Paginate";
 import {ContainerGrid } from "../../styles/CardStyles/CountryCards.js";
 import {NavBar} from '../NavBar/NavBar';
@@ -22,6 +22,7 @@ import {ConteinDiv} from '../../styles/Paginate/ContainerPagRef'
      const [order,setOrder]= useState('');
 
 
+
      const pag=(pageNumber)=>{
         setCurrentPage(pageNumber)
         
@@ -33,9 +34,12 @@ import {ConteinDiv} from '../../styles/Paginate/ContainerPagRef'
 
     }
 
+
+
     const dispatch= useDispatch()
     useEffect(()=>{
-    dispatch(getAllCountries())
+    dispatch(getAllCountries());
+    dispatch(getActs());
     
     },[])
     return (

@@ -7,7 +7,10 @@ import {MAIN_URL ,GET_COUNTRIES,
     FILTER_BY_POPULATION,
     TOURIST_URL,
     GET_DETAIL,
-    GET_ID
+    GET_ID,
+    GET_ACTIVITY,
+    FILTER_BY_ACTIVITY
+
     } from "../../Constants/Constants.js";
 
 
@@ -40,6 +43,29 @@ export function filterByContinent(payload){
         payload
     }
 } 
+
+export function getActs() {
+    return function (dispatch) {
+        return fetch(TOURIST_URL)
+            .then(response => response.json())
+            .then(res => {
+                dispatch({
+                    type: GET_ACTIVITY,
+                    payload: res
+                })
+
+            })
+    }
+   
+}
+
+export function filterByAct(payload){
+    return{
+        type: FILTER_BY_ACTIVITY,
+        payload
+    }
+}
+
 
 export function filterByAlph(payload){
     return{
@@ -96,3 +122,5 @@ export function getDetail(idL) {
     }
    
 }
+
+

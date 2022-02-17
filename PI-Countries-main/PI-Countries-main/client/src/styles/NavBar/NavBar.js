@@ -27,7 +27,7 @@ position: relative;
 
 
 && option{
-    
+    aparence: none;
     background-color: #17171be1;
     color: white;
     

@@ -5,7 +5,7 @@ import SelectorByContinent from "../Selector/Selector";
 import SelectorByAlph from "../Selector/SelectorAlph";
 import SelectByPopulation from "../Selector/SelectorByPopulation";
 import { NavContaier } from "../../styles/NavBar/NavBar";
-
+import SelectorByActivity from '../Selector/SelectorAct'
 
 export function NavBar({setOrder}){
     return(
@@ -17,6 +17,7 @@ export function NavBar({setOrder}){
         setOrder={setOrder}/>
         <SelectByPopulation
         setOrder={setOrder}/>
+        <SelectorByActivity/>
         </NavContaier>
     )
 }

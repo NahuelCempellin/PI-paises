@@ -11,6 +11,7 @@ import {Button} from '../../styles/Buttons/ButtonAct'
     console.log(idL)
   console.log(props)
   const dispatch= useDispatch();
+    const AllActs= useSelector((state)=>state.Activity);
 
 
   useEffect(()=>{
@@ -33,7 +34,7 @@ import {Button} from '../../styles/Buttons/ButtonAct'
                         <p>Subregion: {Country.subregion}</p>
                         <p>Area: {Country.area} km²</p>
                         <p>Population: {Country.population}</p>
-                        <p>Tourist Activities: {Country.touristActs?.map((act)=>{return act.name+(' ')})}</p>
+                        <p>Tourist Activities: {Country.touristActs?.map((act)=>act.name+(' '))}</p>
                         <Link to='/countries'>
                             <Button>Back</Button>
                         </Link>
